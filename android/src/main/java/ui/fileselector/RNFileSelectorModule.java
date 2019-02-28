@@ -111,9 +111,13 @@ public class RNFileSelectorModule extends ReactContextBaseJavaModule {
 
       if (requestCode == 1 && resultCode == AppCompatActivity.RESULT_OK) {
         String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
-        onDone.invoke(filePath);
+         if(onDone != null){
+          onDone.invoke(filePath);
+        }
       } else if (requestCode == 1 && resultCode == AppCompatActivity.RESULT_CANCELED) {
-        onCancel.invoke();
+        if(onCancel != null){
+          onCancel.invoke();
+        }
       }
     }
 
